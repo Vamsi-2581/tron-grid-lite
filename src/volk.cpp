@@ -12,5 +12,11 @@
     GNU General Public License for more details.
 */
 
+// The Vulkan SDK installs the header as Volk/volk.h on Windows and volk/volk.h elsewhere.
+// Clang-cl treats the case mismatch as -Wnonportable-include-path, which -Werror turns fatal.
 #define VOLK_IMPLEMENTATION
+#ifdef _WIN32
+#include <Volk/volk.h>
+#else
 #include <volk/volk.h>
+#endif
