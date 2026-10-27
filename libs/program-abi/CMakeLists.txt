@@ -1,3 +1,15 @@
+# Copyright (C) 2026 The AiQuokkaWannabe Authors https://github.com/ai-quokka-wannabe/tron-grid-lite
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+
 # A header and nothing else, so an INTERFACE target and no compile features. Deliberately neither
 # cxx_std_20 nor a C standard: the whole point of the file is that it compiles as either language
 # under any standard a Program's author happens to use, and a target that pinned one would quietly
@@ -15,7 +27,7 @@ add_subdirectory(tests)
 # a language that can consume a C header; every other binding declares the structs a second time and
 # has nothing holding the copies together. This target is what those bindings can check against.
 #
-# Built as C11 so it can ask the compiler for _Alignof, and given the same offsets a Program sees.
+# Built as C17, the header's own standard, so it can ask the compiler for _Alignof and is given the same offsets a Program sees.
 add_executable(tgl_abi_manifest tools/abi_manifest.c)
 target_link_libraries(tgl_abi_manifest PRIVATE program_abi)
 set_target_properties(tgl_abi_manifest PROPERTIES C_STANDARD 17 C_STANDARD_REQUIRED ON)

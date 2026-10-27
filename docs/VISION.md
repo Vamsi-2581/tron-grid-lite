@@ -118,7 +118,7 @@ rc-worm's panel, not a throwaway; what shape it grows into, and which repository
 will hold the level editor is open as well. What an editor would put to the test here is already written down: the
 Grid's shape is compiled into both ends of the wire ([TOPOLOGY.md § The protocol](TOPOLOGY.md#the-protocol)), and its
 floor is an analytic height function, never baked to a mesh, with all but 120 of its triangles coming from about
-eleven numbers ([TODO.md § Etape 11](../TODO.md#etape-11--import-creature-bodies-as-gltf)). An editor that authors any
+eleven numbers ([TODO.md § Etape 18](../TODO.md#etape-18--import-creature-bodies-as-gltf)). An editor that authors any
 Grid shape and any placement is the day those rules are read again.
 
 ## An Independent Project

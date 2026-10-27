@@ -14,7 +14,7 @@
 
 /*!
     \file test_program.c
-    The smallest Program that satisfies the ABI, built as a shared library from plain C11.
+    The smallest Program that satisfies the ABI, built as a shared library from plain C17.
 
     It is a fixture rather than a demonstration: it drives nothing, and a creature it rezzes onto
     stands still for ever. What it is for is that building it exercises the half of the header the
