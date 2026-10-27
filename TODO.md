@@ -29,7 +29,7 @@ creature at a time.
 
 ## Completed etapes
 
-Thirteen etapes, all boxes ticked. They are collapsed to one line each because a finished checklist is
+Fourteen etapes, all boxes ticked. They are collapsed to one line each because a finished checklist is
 not a plan — what each one *decided* lives in `CHANGELOG.md`, and what each one
 *built* lives in the code with the reasoning attached to it. Keeping the checklists as well meant
 maintaining a third copy that drifts.
@@ -47,6 +47,7 @@ maintaining a third copy that drifts.
 | 9 | Phase 6 prerequisite: sub-allocate device memory | `MemoryArena`; sub-allocation warnings 16 to 2 |
 | 10 | Phase 6 prerequisite: a two-level hierarchy | `Scene`, `Instance`, `flatten`; `traceScene` in the shared module; both senses on it |
 | 11 | Make the Grid a command-line program that can open a window | Null-surface `Device`, `--window`, every other mode headless |
+| 12 | Phase 6 prerequisite: confine Program library paths | `ProgramLib::resolve` takes an identifier whose alphabet cannot spell `..`, and a directory the Grid already trusts; landed in one commit with the loader it guards |
 | 16 | A check that runs without a GPU | The per-tick state hash in `roster_tests` under ctest; lavapipe answers the three `--verify` modes on every push |
 | 17 | Phase 6 prerequisite: consume Link | The `external/link` submodule built by cargo from CMake; `LinkLib::Library` with the beside-the-executable residence rule; the Link headers' asserts running under all three C++ toolchains; `LoaderOs` extracted for both loaders |
 
@@ -71,13 +72,19 @@ are worth knowing before touching the areas they govern:
   its on-demand gate to skip whole frames while somebody drags a window edge. `--window` is the
   live view of Master Control's world, and nothing alive can miss a tick there either: the tick
   is the server's, and the window only watches.
+- **A path that reaches the filesystem is confined by removing the capability, not by guarding it.**
+  Validating a path does not clear CodeQL's query, which recognises particular normalise-and-contain
+  barriers rather than hand-rolled checks, and a `query-filters` exclusion would be inert under the
+  default setup this repository scans with. What worked, on the recorder and then on the Program
+  loader, was naming choices from constants or an identifier alphabet with no dot, separator or
+  colon, so `..` is unrepresentable rather than detected.
 - **The reference render digests are the only genuine one-way door here.** Regenerating the two rows
   in `.claude/CLAUDE.md` needs physical access to both GPUs. Never move a digest speculatively, and
   batch anything that must move it into a single commit.
 - **What the digest cannot see**, and the two other limits of it, live in
   [.claude/CLAUDE.md](.claude/CLAUDE.md) § The reference render, beside the digests themselves.
 
-## Etape 11 — Import creature bodies as glTF
+## Etape 18 — Import creature bodies as glTF
 
 **Not now, and this entry exists so that "not now" is a decision rather than a gap.**
 
@@ -157,48 +164,6 @@ world matrices resolved in one forward linear pass — no recursion and no sort.
    roughly 9 ms for twenty creatures. A world of flat-shaded facets has little use for smooth
    skinning, so the cheap answer and the fitting answer coincide, which is worth being slightly
    suspicious of.
-
-## Etape 12 — Phase 6 prerequisite: confine Program library paths
-
-**A security obligation that is not yet due, recorded here because it becomes due at a specific and
-foreseeable moment.**
-
-Code scanning has repeatedly flagged paths reaching the filesystem from the command line, and every
-one of those alerts has been dismissed as a false positive. The reasoning is sound *today*: the only
-party who can set `--output` or `--gif` is the person who already owns the process and could do the
-same with a shell redirect. The query assumes `argv` is attacker-controlled, which is right for a
-setuid binary or a service and wrong for a renderer somebody launches themselves.
-
-**That reasoning expires in Phase 6.** Once the creature roster resolves Program library paths out of
-a config file, as `docs/PROGRAM_INTERFACE.md` describes, the path stops coming from the command line
-and starts coming from a file that a downloaded creature pack could have written. At that point the
-input genuinely is untrusted, the query is right, and confinement becomes a requirement rather than
-theatre.
-
-- [x] Confine Program library paths before the Grid loads a Program from a config file
-
-Two dead ends already explored, so that nobody spends the afternoon again:
-
-- **Validating the path does not clear the query.** It recognises particular normalise-and-contain
-  barriers, not hand-rolled checks — this was tried on `tools/record_flyby.py` and the alert
-  survived while a second one appeared.
-- **A `query-filters` exclusion would be silently inert.** There is no CodeQL workflow in this
-  repository; scanning runs under GitHub's default setup, which never reads that file. Making it
-  work would mean owning a hand-maintained workflow forever and disarming the query repository-wide.
-
-The fix that did work on the recorder was removing the capability rather than guarding it: `--preset`
-and `--config` name choices from constant tuples, so no path comes from `argv` at all. **That is the
-shape this took**: `ProgramLib::resolve` takes an identifier and a directory the Grid already trusts,
-and the identifier's alphabet — letters, digits, underscore, hyphen, beginning with a letter or digit
-— contains no dot, no separator and no colon. `..` is therefore unrepresentable rather than detected,
-which is why the code has no special case for it.
-
-**One sequencing point, because it is a real decision and not a preference.** The Program loader is
-not merely the thing that arrives *near* this etape — it **is** the untrusted-path code this etape
-exists to guard. So there were only two orders: confinement first with the loader written against it,
-or both in one commit. "Loader now, confinement soon" was the one order that could not be chosen,
-because it means shipping the exact code the alert describes while the dismissal that covered it has
-already expired. They landed together.
 
 ## Etape 13 — Phase 6: questions to settle before writing the tick loop
 
@@ -349,7 +314,7 @@ pointer. Recorded here as a thing that could be built, not in the ABI as a thing
 The header and a Program returning constants ship **before** physics — the phase milestone is that the
 sensor interface plugs in, and physics is what makes the senses stop being constant afterwards.
 
-- [x] `libs/program-abi` — the C99 header, an `INTERFACE` target, vendorable into other trees
+- [x] `libs/program-abi` — the C17 header, an `INTERFACE` target, vendorable into other trees
 - [x] Load a Program: `LoadLibrary`/`dlopen`, one symbol, version refusal, vtable, lifecycle
 - [x] `--program <name>` — host the Program's creature in Master Control's world (the loading check lives in `--list-programs`)
 - [x] `--list-programs` — what is installed, and which of it would load
@@ -432,10 +397,10 @@ that want three different answers rather than one rule:
   beside the other argument handling rather than in the function that consumes the value.
 
 - [ ] Convert the fifteen non-constructor throws, by group
-- [ ] Convert the fifteen `std::abort` sites in `device.cpp`, `instance.cpp`, `swapchain.cpp` and the
-      three window backends
+- [x] Convert the fifteen `std::abort` sites in `device.cpp`, `instance.cpp`, `swapchain.cpp` and the
+      three window backends — done 2026-08-04: each is a `std::runtime_error` now
 
-**The aborts are the defect, not the throws.** `logFatal` flushes and writes to stderr before them, so
+**The aborts were the defect, not the throws, which is why they went first.** `logFatal` flushes and writes to stderr before them, so
 the diagnosis survives — but the process terminates abnormally rather than returning `EXIT_FAILURE`,
 no destructor runs, and on Windows the CRT may raise its termination dialog: a modal box on somebody's
 screen, and a hung job on a machine with nobody in front of it. This repository has met that failure

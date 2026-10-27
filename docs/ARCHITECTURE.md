@@ -533,7 +533,7 @@ If bodies are **skinned** rather than rigid, their vertices move relative to eac
 hierarchies must be rebuilt every tick: about 0.45 ms for a thousand-triangle body, so roughly 9 ms
 for twenty of them. Still three times better than rebuilding everything, but no longer free.
 
-That connects the two open questions in Etape 11 rather than leaving them independent. **Rigid
+That connects the two open questions in Etape 18 rather than leaving them independent. **Rigid
 segments driven by the Grid's own physics make the two-level structure nearly free; skinned meshes
 make it merely much better.** A world whose entire aesthetic is flat-shaded facets has little use for
 smooth skinning, so the cheap answer and the fitting answer are the same one — which is the most

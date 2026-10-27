@@ -1,3 +1,15 @@
+# Copyright (C) 2026 The AiQuokkaWannabe Authors https://github.com/ai-quokka-wannabe/tron-grid-lite
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+
 # The Grid's deviceless core, as a library at last. TOPOLOGY.md's audit mapped this seam: src/
 # "finally has the second consumer that justifies the library target its own test files have been
 # working around". The tests link this instead of re-compiling translation units one by one, and

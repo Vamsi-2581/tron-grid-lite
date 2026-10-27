@@ -1197,6 +1197,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **The month-end audit: words that drifted from the tree.** The guides said Rust 1.95.0 while
+  Link's pin, the one the build installs, had moved to 1.98.0 and now 1.99.1; the README named a
+  "stable toolchain" rather than that pin. TODO.md numbered two etapes 11 - the open glTF etape is
+  Etape 18 now, and VISION and ARCHITECTURE follow it - kept the finished Etape 12 as a section
+  (it joins the table; its two dead ends join the load-bearing decisions), left Etape 15's
+  `std::abort` box unticked although those fifteen sites became `std::runtime_error` on
+  2026-08-04, and called the Program ABI header C99; it is C17, and so is the manifest tool its
+  CMake comment called C11 and the test Program its comment called C11. The acoustics research
+  cited the RAVEN project's site, which no longer answers (it turned the weekly link check red);
+  the citation keeps the university's record and the ISBN. `external/link` moves from the
+  protocol-v11 commit to link's month-end tidy (5a1c6b0), which is where the 1.99.1 pin lives;
+  the wire is unchanged - the headers differ by their notices and one comment.
+- **Every code file carries its notice.** The nineteen CMake files, the two `tools/` scripts and
+  the CI cache script open with the GPL notice the C++ sources carry, in their own comment syntax.
 - **The documents catch up with the articulated worm.** Sentences written before the servos still
   described an older Grid, and now say what the four repositories hold: TOPOLOGY's four-repositories
   table (master-control's articulated chain, Link at protocol 11, and rc-worm living - a User at its

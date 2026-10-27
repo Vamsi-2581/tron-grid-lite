@@ -223,7 +223,7 @@ same fixed camera path `--record` does so that two runs compare. It writes nothi
 - **C++20** compiler (MSVC, GCC, or Clang)
 - **CMake** 3.25+
 - **Ninja** build system
-- **Rust** stable toolchain via [rustup](https://rustup.rs/) — cargo builds Link, the wire of the
+- **Rust** 1.99.1, pinned by the Link submodule and installed by [rustup](https://rustup.rs/) — cargo builds Link, the wire of the
   Grid, from the `external/link` submodule at build time. The built library is required to sit
   beside the executable, and the build puts it there
 

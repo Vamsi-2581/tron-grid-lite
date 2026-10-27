@@ -14,7 +14,7 @@ build/windows-msvc/src/Release/TronGridLite --debug
 ```
 
 That needs a C++20 compiler, CMake 3.25+, Ninja, the Vulkan SDK 1.4.357.0 (with `slangc` and
-`spirv-val` - install every component), and rustup (Rust 1.95.0 is installed by the pin the
+`spirv-val` - install every component), and rustup (Rust 1.99.1 is installed by the pin the
 moment cargo first runs). Everything below is the long version, with every version CI pins.
 
 ---
@@ -41,7 +41,7 @@ hardware ray tracing, so integrated graphics from the last few years are fair ga
 | Ninja | 1.11 or newer | <https://ninja-build.org/> (bundled with Visual Studio and most distributions) |
 | Vulkan SDK | **1.4.357.0** - the version CI builds against; newer works, the real constraint is `slangc` and `spirv-val` in its `bin` | <https://vulkan.lunarg.com/sdk/home> |
 | Git | any recent | <https://git-scm.com/downloads> |
-| rustup | any recent; **Rust 1.95.0** is pinned by `external/link/rust-toolchain.toml` and installed by rustup on first use | <https://rustup.rs/> |
+| rustup | any recent; **Rust 1.99.1** is pinned by `external/link/rust-toolchain.toml` and installed by rustup on first use | <https://rustup.rs/> |
 | Python | 3.10 or newer, for the `tools/` scripts and the pinned formatter | <https://www.python.org/downloads/> |
 | Node.js | 20 or newer, only for the markdown linter (`npm ci`) | <https://nodejs.org/> |
 

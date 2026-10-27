@@ -99,7 +99,7 @@ When submitting:
 - CMake 3.25+
 - Ninja build system
 - Vulkan SDK 1.4.357.0 (the version CI pins; `slangc` and `spirv-val` must be in its `bin`)
-- rustup (Rust 1.95.0 is pinned by the Link submodule and installed on first use)
+- rustup (Rust 1.99.1 is pinned by the Link submodule and installed on first use)
 - XCB development headers (Linux only)
 
 The complete, step-by-step guide - every version, every preset, the formatter and linter pins,
