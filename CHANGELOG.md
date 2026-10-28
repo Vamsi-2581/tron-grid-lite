@@ -1197,6 +1197,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **The live and debug views are distinct.** Correct two comments in `src/main.cpp` that
+  described `--window` as the creature-free debug view; document the live world's creatures,
+  the debug view's on-demand gate, and the live loop's steady pace.
+
 - **The month-end audit: words that drifted from the tree.** The guides said Rust 1.95.0 while
   Link's pin, the one the build installs, had moved to 1.98.0 and now 1.99.1; the README named a
   "stable toolchain" rather than that pin. TODO.md numbered two etapes 11 - the open glTF etape is
