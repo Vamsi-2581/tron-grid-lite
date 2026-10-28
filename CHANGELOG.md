@@ -1197,6 +1197,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **The window and debug-view comments agree with the live modes.** `src/main.cpp` now describes `--window` as the live world view and `--debug` as the serverless stage inspection.
+
 - **The month-end audit: words that drifted from the tree.** The guides said Rust 1.95.0 while
   Link's pin, the one the build installs, had moved to 1.98.0 and now 1.99.1; the README named a
   "stable toolchain" rather than that pin. TODO.md numbered two etapes 11 - the open glTF etape is
