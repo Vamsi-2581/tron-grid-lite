@@ -544,6 +544,10 @@ simplest sensor preset is named after an animal that navigates chiefly by chemot
 so the simplest possible creature is arguably specified with the wrong sense — and gradient
 following would be a far gentler first problem for a Program than interpreting an image.
 
+**Revisited (2026-10-29), as a proposal:** [CHEMORECEPTION.md](CHEMORECEPTION.md) designs food, the sense of intake
+and smell. The field it uses is written in closed form rather than simulated, and is not traced, so neither half of
+the objection above is a cost; until it is built, this section's first paragraph describes the Grid as it is.
+
 ---
 
 ## Actions
