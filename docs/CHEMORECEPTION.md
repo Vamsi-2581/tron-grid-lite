@@ -192,13 +192,13 @@ only a reading at the nose and the body's own motion, which is what this sense g
 
 | Where | What |
 |---|---|
-| World definition | the food count, emission, loss rate and glow strength - in the world fingerprint |
-| `TICK_STATE` | food rows: id, position, radius, quantity left, odour pattern - so the spectator draws them and the creature host's senses see them; a few dozen orbs are a few hundred bytes |
+| World definition | unchanged: food is placed only by the world, so neither end must agree on it in advance; the density and the placement seed live in Master Control's launch settings and the input log's header |
+| `TICK_STATE` | food rows (`LnkFoodState`, 24 bytes): id, position, radius, quantity left - so the spectator draws them and the creature host's senses see them; at most 64 orbs, 1,536 bytes. No odour pattern: smell is the world's to compute, and no client needs the patterns |
 | `EVENT` | food gone (the orb, the tick, its position and the pew's strength - the sound a spectator and the ears render) |
-| `PROPRIOCEPTION`, the letter | `intake` this tick; `odour[2][8]`, the two amphids' bound fractions |
+| `PROPRIOCEPTION`, the letter | `intake` this tick; `odour[16]`, the two amphids' bound fractions (left 0-7, right 8-15); the letter grows from 96 to 160 bytes |
 | `TglSenses` | `intake` and `odour[2][8]`, copied from the letter |
 
-A protocol bump (v12) and a Program ABI bump (11), taken together, as movements 3 to 5 took theirs.
+A protocol bump (v12, with client ABI 10) and a Program ABI bump (11), taken together, as movements 3 to 5 took theirs.
 
 ## The build, in order
 
