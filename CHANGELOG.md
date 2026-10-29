@@ -1198,7 +1198,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - **The window and debug-view comments agree with the live modes.** `src/main.cpp` now describes `--window` as the live world view and `--debug` as the serverless stage inspection.
-
+- **The linter's math renderer is the patched one.** markdownlint reaches KaTeX through
+  `micromark-extension-math`, whose `^0.16` range cannot reach the prototype-pollution fix in 0.18.2
+  (Dependabot #7), so `package.json` overrides it to 0.18.2. The linter loads it and passes as before.
 - **The month-end audit: words that drifted from the tree.** The guides said Rust 1.95.0 while
   Link's pin, the one the build installs, had moved to 1.98.0 and now 1.99.1; the README named a
   "stable toolchain" rather than that pin. TODO.md numbered two etapes 11 - the open glTF etape is
