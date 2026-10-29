@@ -33,7 +33,7 @@ tron-grid-lite/
 ├── LICENCE              ← GPL v3
 ├── README.md            ← public-facing project overview
 ├── TODO.md              ← roadmap and open etapes
-├── docs/                ← VISION, ARCHITECTURE, MATERIALS, ACOUSTICS, PERCEPTION, PROGRAM_INTERFACE, TOPOLOGY, RELATED_WORK, DEV_ENV_SETUP
+├── docs/                ← VISION, ARCHITECTURE, MATERIALS, ACOUSTICS, CHEMORECEPTION, PERCEPTION, PROGRAM_INTERFACE, TOPOLOGY, RELATED_WORK, DEV_ENV_SETUP
 ├── external/link        ← the Link submodule — the wire of the Grid, built by cargo, loaded beside the executable like a Program
 ├── images/              ← the flyby clips the README embeds
 ├── libs/                ← bvh, logging, math, signals, testing, window — static libraries — and program-abi, the C contract Programs build against

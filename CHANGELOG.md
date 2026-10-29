@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Chemoreception, designed: food, the sense of intake, and smell (`docs/CHEMORECEPTION.md`).** The owner's ask
+  (2026-10-29): food as glowing yellow orbs that go with a "pew", and smell as realistic as the eyes and ears. Food is
+  the world's - placed by the RNG of record, eaten by a mouth at the nose in pumps at the worm's measured 3.5 Hz,
+  gone with a real sound that ears and speakers both hear. Smell is the world's too: the exact field of a continuous
+  point source with first-order loss over a reflecting floor, scaled from air to the Grid's worm, which grows,
+  settles and lingers after an orb is eaten; read at two amphids by eight receptor types that saturate and carry
+  Berg-Purcell counting noise, so a Program gets bound fractions and never a direction. A proposal: no code yet,
+  and PROGRAM_INTERFACE's "deliberately absent" section points at it. Asked for by iso-lab in #153 and
+  master-control#63.
 - **Every contributor credited, and their copyright kept.** README.md gains a Contributors section that
   lists everyone who helps, for any kind of contribution - code, documentation, bug reports, reviews,
   ideas, answers in Discussions - following the All Contributors specification and its emoji key, kept by
