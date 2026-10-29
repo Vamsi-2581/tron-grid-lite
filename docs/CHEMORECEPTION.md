@@ -52,8 +52,15 @@ hardware they need is there.
   `(1.0, 0.8, 0.15)` times a strength the world sets), holding a quantity of food that eating depletes. A shrinking
   quantity shrinks the orb's glow, not its size, so a half-eaten orb is a dimmer one.
 - **Where orbs are**: placed at world start by the RNG of record, on flat cells at least an orb's diameter from any
-  riser, a fixed count per world (a world-definition field, so the world fingerprint covers it). Deterministic, so two
-  lives of one world meet the same food.
+  riser. Deterministic, so two lives of one world meet the same food.
+- **How much food - set when Master Control starts** (the owner's ask, 2026-10-29). Today Master Control takes only
+  command-line flags (`--disk`, `--disk-roll`, `--log`, `--verbose`) and has no config file, and the world's shape is
+  compiled into both ends of the wire. Food needs neither end to agree in advance, because only the world places it
+  and the orbs travel in `TICK_STATE`, so its density is a launch setting rather than a world-definition constant:
+  `--food-density <orbs per 100 m^2 of open floor>`, and the same key in an optional `--config <file>` of
+  `key = value` lines (Master Control's first config file: every flag may be written there, and a flag on the
+  command line wins). The density and the placement seed are written into the input log's header, so Clu replays
+  the same food; a Disk needs nothing extra, since the orbs are in its frames.
 - **Seen**: the orbs are geometry in the scene the senses already trace. A creature with eyes sees their glow and
   their reflection in the mirror floor; a creature's ears hear them as occluders. Nothing about this is special-cased:
   they are emissive objects, as the neon tubes are. A creature whose preset has no eyes cannot see them at all - the
