@@ -1449,11 +1449,13 @@ int main(int argc, char** argv)
             none. A window is something the User asks for in order to check that things are in their
             place.
 
-            **With a window there are no creatures.** This is a debug view of the Grid itself, not a
-            viewport onto a running simulation: it renders to the screen for a human, and no Program
-            is loaded. That is why the on-demand gate below may skip whole frames with a clear
-            conscience — there is nothing alive in the world whose tick could be missed while the User
-            drags a window edge.
+            **A window instance loads no Program, but it may well show creatures.** `--window` is the
+            live view: it joins a world through Master Control (or plays a Disk back with `--replay`)
+            and draws what it is told, the creatures included. `--debug` is the serverless stage
+            inspection: the bare Grid for a human checking the rendering, with no world in it. Only
+            the debug view may let the on-demand gate below skip whole frames with a clear
+            conscience — there is nothing alive in it whose tick could be missed while the User
+            drags a window edge; the live view keeps a steady pace instead.
         */
         bool wants_window{false};
         bool wants_debug_view{false};
@@ -1801,12 +1803,14 @@ int main(int argc, char** argv)
         }
 
         /*
-            Everything below here is the debug view, and it is reachable only with `--window`.
+            Everything below here is the window: the live view (`--window`, a world joined through
+            Master Control or a Disk played back) and the debug view (`--debug`, the Grid alone).
 
-            **No Program is loaded in this mode.** The window exists so the User can check that the
+            **No Program is loaded in either.** The debug view exists so the User can check that the
             Grid itself is right — that the geometry is in its place, that the neon reads as neon —
-            and not to watch a simulation run. That is what lets the loop below skip whole frames
-            whenever the view has not changed: there is nothing alive whose tick could be missed.
+            and that is what lets the loop below skip whole frames whenever the view has not changed:
+            there is nothing alive whose tick could be missed. With a live world that licence expires,
+            and the loop turns at a steady pace (see the gate in the loop itself).
 
             The renderer runs on its own thread. Not for throughput — the GPU is the bottleneck and a
             thread does not make it faster. It is for responsiveness: on Win32 a modal resize drag

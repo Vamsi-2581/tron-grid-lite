@@ -1197,6 +1197,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **The window and debug-view comments agree with the live modes.** `src/main.cpp` now describes `--window` as the live world view and `--debug` as the serverless stage inspection.
 - **The linter's math renderer is the patched one.** markdownlint reaches KaTeX through
   `micromark-extension-math`, whose `^0.16` range cannot reach the prototype-pollution fix in 0.18.2
   (Dependabot #7), so `package.json` overrides it to 0.18.2. The linter loads it and passes as before.
