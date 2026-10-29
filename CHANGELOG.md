@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Chemoreception's open points, settled.** The owner's review (2026-10-29): the orbs glow **white**, a ball every
+  animal can see - yellow would have been invisible to the worm, whose preset keeps only blue - and the document
+  says why that is interesting rather than a shortcut: the real worm avoids short-wavelength light (LITE-1, Edwards
+  et al. 2008), so a faithful brain may be drawn by an orb's odour and pushed by its light. The field is derived from
+  the instantaneous kernel and proved by Master Control's tests against numerical integration, instead of resting on
+  a book page; air's diffusion coefficient is bracketed by read values (carbon dioxide 1.6e-5, water vapour
+  2.6e-5 m^2/s) and stays a named parameter until the odorants' own are read; and the terraces' effect on odour is
+  quantified as local - a riser is a seventeenth of a second's spread - with its trigger kept.
 - **Chemoreception, designed: food, the sense of intake, and smell (`docs/CHEMORECEPTION.md`).** The owner's ask
   (2026-10-29): food as glowing yellow orbs that go with a "pew", and smell as realistic as the eyes and ears. Food is
   the world's - placed by the RNG of record, eaten by a mouth at the nose in pumps at the worm's measured 3.5 Hz,
