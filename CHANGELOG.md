@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Chemoreception's wire table matches protocol v12 as built.** The design's table put each orb's odour pattern in
+  `TICK_STATE` and the food settings in the world definition; link v12 (link#49) carries neither, rightly - smell is
+  the world's to compute, and food density is a launch setting written into the input log's header. The table now
+  says what v12 carries: 24-byte food rows with no pattern, the world definition and its fingerprint unchanged, the
+  food-gone event naming the eater and the orb's centre but no orb id, and the letter at 160 bytes with `odour[16]`.
+  The document's opening says the wire half is built.
 - **Chemoreception's open points, settled.** The owner's review (2026-10-29): the orbs glow **white**, a ball every
   animal can see - yellow would have been invisible to the worm, whose preset keeps only blue - and the document
   says why that is interesting rather than a shortcut: the real worm avoids short-wavelength light (LITE-1, Edwards

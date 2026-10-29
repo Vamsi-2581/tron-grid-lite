@@ -1,8 +1,9 @@
 # Chemoreception
 
 Food on the Grid, the body's sense of taking it in, and smell: what each is, which block owns it, and why it is
-shaped as it is. A design proposal, not yet code; the owner asked for it on 2026-10-29 ("glowing yellow orbs" for food, then white,
-and smell "as realistic as we did with the auditory and visual senses"), and iso-lab asks for both
+shaped as it is. A design whose wire half is built (link v12); the world and the senses are not yet code. The
+owner asked for it on 2026-10-29 ("glowing yellow orbs" for food, then white, and smell "as realistic as we did with
+the auditory and visual senses"), and iso-lab asks for both
 ([master-control#63](https://github.com/ai-quokka-wannabe/master-control/issues/63),
 [tron-grid-lite#153](https://github.com/ai-quokka-wannabe/tron-grid-lite/issues/153)).
 
@@ -192,13 +193,13 @@ only a reading at the nose and the body's own motion, which is what this sense g
 
 | Where | What |
 |---|---|
-| World definition | the food count, emission, loss rate and glow strength - in the world fingerprint |
-| `TICK_STATE` | food rows: id, position, radius, quantity left, odour pattern - so the spectator draws them and the creature host's senses see them; a few dozen orbs are a few hundred bytes |
-| `EVENT` | food gone (the orb, the tick, its position and the pew's strength - the sound a spectator and the ears render) |
-| `PROPRIOCEPTION`, the letter | `intake` this tick; `odour[2][8]`, the two amphids' bound fractions |
+| World definition | unchanged: food is placed only by the world, so neither end must agree on it in advance; the density and the placement seed live in Master Control's launch settings and the input log's header |
+| `TICK_STATE` | food rows (`LnkFoodState`, 24 bytes): id, position, radius, quantity left - so the spectator draws them and the creature host's senses see them; at most 64 orbs, 1,536 bytes. No odour pattern: smell is the world's to compute, and no client needs the patterns |
+| `EVENT` | food gone (`LNK_EVENT_FOOD_GONE`): the tick, the orb's centre as the position, the creature whose bite emptied it, and the pew's strength - no orb id; the sound a spectator and the ears render |
+| `PROPRIOCEPTION`, the letter | `intake` this tick; `odour[16]`, the two amphids' bound fractions (left 0-7, right 8-15); the letter grows from 96 to 160 bytes |
 | `TglSenses` | `intake` and `odour[2][8]`, copied from the letter |
 
-A protocol bump (v12) and a Program ABI bump (11), taken together, as movements 3 to 5 took theirs.
+A protocol bump (v12, with client ABI 10) and a Program ABI bump (11), taken together, as movements 3 to 5 took theirs.
 
 ## The build, in order
 
@@ -206,7 +207,7 @@ A protocol bump (v12) and a Program ABI bump (11), taken together, as movements 
    the mouth rule, the pump, the quantity); `odour.rs` (the field, the receptors, the noise); unit tests for each, red
    first - the field against its own steady state and its superposition, the pump against the tick grid, placement
    against the risers.
-2. **Link** v12: the food rows, the event, the letter's new fields; the fingerprint moves.
+2. **Link** v12: the food rows, the event, the letter's new fields; the protocol fingerprint moves, the world's does not. **Built** (link#49, merged 2026-10-29).
 3. **Master Control** on the wire: rows, event, letter; Clu replays food; the goldens re-recorded.
 4. **The Grid**: the orbs drawn (emissive, in the scene the senses trace), `TglSenses` grows, ABI 11; checked on every
    adapter the desks have and on lavapipe.
