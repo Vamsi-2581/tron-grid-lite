@@ -1,8 +1,9 @@
 # Chemoreception
 
 Food on the Grid, the body's sense of taking it in, and smell: what each is, which block owns it, and why it is
-shaped as it is. A design whose wire half is built (link v12); the world and the senses are not yet code; the owner asked for it on 2026-10-29 ("glowing yellow orbs" for food, then white,
-and smell "as realistic as we did with the auditory and visual senses"), and iso-lab asks for both
+shaped as it is. A design whose wire half is built (link v12); the world and the senses are not yet code. The
+owner asked for it on 2026-10-29 ("glowing yellow orbs" for food, then white, and smell "as realistic as we did with
+the auditory and visual senses"), and iso-lab asks for both
 ([master-control#63](https://github.com/ai-quokka-wannabe/master-control/issues/63),
 [tron-grid-lite#153](https://github.com/ai-quokka-wannabe/tron-grid-lite/issues/153)).
 
