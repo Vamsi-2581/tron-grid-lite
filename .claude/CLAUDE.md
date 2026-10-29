@@ -128,11 +128,12 @@ GCC, which is the same compiler family and the same warning set the Linux jobs u
 
 Any Vulkan 1.3 GPU — **no ray tracing extensions required or used**.
 
-**Two machines, four devices, three vendors - and a virtual fifth.** The daily machine is the first pair; the second
-is still available and is exercised about weekly, which is what keeps the modest-hardware claim honest rather than
-remembered. The fifth is no card at all: Mesa's lavapipe, a Vulkan device that runs on the CPU, which CI verifies on
-every push and iso-lab's cloud machines - which have no GPU - run the Grid on. It is a supported target, not a test
-convenience (the owner's ruling, 2026-10-29): whatever the Grid does must run on all five.
+**Two machines, four devices, three vendors — and a virtual fifth.** The daily machine is the
+first pair; the second is still available and is exercised about weekly, which is what keeps the
+modest-hardware claim honest rather than remembered. The fifth is no card at all: Mesa's lavapipe,
+a Vulkan device that runs on the CPU, which CI verifies on every push and iso-lab's cloud machines
+— which have no GPU — run the Grid on. It is a supported target, not a test convenience (the
+owner's ruling, 2026-10-29): whatever the Grid does must run on all five devices.
 
 | Machine | # | Device | Type | Vulkan | Cadence |
 |---------|---|--------|------|--------|---------|
@@ -144,11 +145,11 @@ convenience (the owner's ruling, 2026-10-29): whatever the Grid does must run on
 
 Three vendors is the part worth having. NVIDIA and AMD share more lineage than either shares with
 Intel, so an Intel integrated part is the least like anything this renderer was developed against —
-and it is the cheapest of the four to run, being in the daily machine.
+and it is the cheapest of the four cards to run, being in the daily machine.
 
 **The Intel part is the device under test, and paradoxically that is because it is the weakest
-thing here.** It exposes no ray-tracing extension at all, it is integrated, and it is the slowest of
-the four — so it guards both claims this project makes about hardware, and it does so on the daily
+card here.** It exposes no ray-tracing extension at all, it is integrated, and it is the slowest of
+the four cards — so it guards both claims this project makes about hardware, and it does so on the daily
 machine rather than weekly. Measured rather than assumed:
 
 | Device | Ray-tracing extensions exposed |
@@ -156,6 +157,7 @@ machine rather than weekly. Measured rather than assumed:
 | Intel RaptorLake-S Mobile Graphics | none |
 | NVIDIA GeForce RTX 4090 Laptop | `acceleration_structure`, `ray_query`, `ray_tracing_pipeline`, `ray_tracing_position_fetch`, `NV_ray_tracing` |
 | NVIDIA GeForce GTX 1650 Ti | none |
+| Mesa lavapipe (CI) | not measured yet — recent Mesa releases may expose them, so read it from a `vulkaninfo` on the runner before relying on its absence |
 
 **Having one device that does expose them is worth as much as the ones that do not.** An accidental
 dependency on a ray-tracing extension would run perfectly on the 4090 and fail on everything else, so
