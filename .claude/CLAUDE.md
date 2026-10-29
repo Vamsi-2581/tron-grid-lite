@@ -128,9 +128,11 @@ GCC, which is the same compiler family and the same warning set the Linux jobs u
 
 Any Vulkan 1.3 GPU — **no ray tracing extensions required or used**.
 
-**Two machines, four devices, three vendors.** The daily machine is the first pair; the second is
-still available and is exercised about weekly, which is what keeps the modest-hardware claim honest
-rather than remembered.
+**Two machines, four devices, three vendors - and a virtual fifth.** The daily machine is the first pair; the second
+is still available and is exercised about weekly, which is what keeps the modest-hardware claim honest rather than
+remembered. The fifth is no card at all: Mesa's lavapipe, a Vulkan device that runs on the CPU, which CI verifies on
+every push and iso-lab's cloud machines - which have no GPU - run the Grid on. It is a supported target, not a test
+convenience (the owner's ruling, 2026-10-29): whatever the Grid does must run on all five.
 
 | Machine | # | Device | Type | Vulkan | Cadence |
 |---------|---|--------|------|--------|---------|
@@ -138,6 +140,7 @@ rather than remembered.
 | daily | 1 | NVIDIA GeForce RTX 4090 Laptop | discrete | 1.4.341 | every change — speed, and where an RT dependency would hide |
 | weekly | 0 | AMD Radeon(TM) Graphics | integrated | 1.3.260 | about weekly — the third vendor |
 | weekly | 1 | NVIDIA GeForce GTX 1650 Ti | discrete | 1.4.341 | about weekly — discrete, no RT, older generation |
+| CI | 0 | Mesa lavapipe: `llvmpipe (LLVM 20.1.2, 256 bits)` | virtual (CPU) | 1.4.318 | every push — the Verify (software Vulkan) job; also iso-lab's cloud machines, which have no GPU |
 
 Three vendors is the part worth having. NVIDIA and AMD share more lineage than either shares with
 Intel, so an Intel integrated part is the least like anything this renderer was developed against —
