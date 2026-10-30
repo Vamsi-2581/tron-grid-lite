@@ -46,8 +46,7 @@ namespace RosterLib
         which accumulate an error somebody eventually has to explain in a replay.
 
         The rate is never sized to what looks smooth through the debug window. That window serves a
-        human's eye, which is exactly why it must not drive the decision. Human Users entering with
-        avatars are the long arc of docs/VISION.md; this rate belongs to the Grid, not its observer.
+        human's eye, which is exactly why it must not drive the decision.
     */
     inline constexpr float TICK_SECONDS{0.03125f};
 
