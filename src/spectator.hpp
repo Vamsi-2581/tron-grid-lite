@@ -32,9 +32,8 @@
     and never from this class. Nothing typed into this window can influence any creature, and
     moving the camera has no effect whatsoever on what any creature perceives — creature sensors
     derive their own view and projection matrices from their own state (see docs/PERCEPTION.md).
-    A User who steers a creature today does so from that Program's own panel, never from here;
-    human Users entering with avatars are the long arc of docs/VISION.md, which this class does
-    not anticipate. This camera is a window onto the Grid, never a hand inside it.
+    A User who steers a creature today does so from that Program's own panel, never from here.
+    This camera is a window onto the Grid, never a hand inside it.
 
     The controller owns only input state: a set of currently-held keys, a desired cursor-capture
     flag, and the accumulated mouse-look deltas. It holds no window, no camera and no renderer
